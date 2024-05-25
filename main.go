@@ -4,7 +4,8 @@ import (
 	"log"
     settings "yogoart/utils/settings"
     ser "yogoart/yoserial"
-    "yogoart/tui"
+    // "yogoart/tui"
+    vid "yogoart/utils/video_utils"
 )
 
 func main() {
@@ -16,14 +17,14 @@ func main() {
         log.Fatal(err)
     }
 
-    tui.RunTui() 
+    fb := vid.ReadFrameAsJpeg("./sample_data/in1.mp4", 5, 128, 32)
 
-    /*
-    n, err := yoSerial.SendBkstMessage(1002, params.ToUint8Array())
+    // tui.RunTui() 
+
+    n, err := yoSerial.SendBkstMessage(2000, fb)
     if err != nil {
         log.Fatal(err)
     } else {
         log.Println("Sent message, number of bytes sent:", n)
     }
-    */
 }
