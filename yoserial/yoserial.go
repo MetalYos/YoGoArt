@@ -2,7 +2,6 @@ package yoserial
 
 import (
 	"errors"
-	"log"
 	ymsg "yogoart/models/yoart_msg"
 
 	"go.bug.st/serial"
@@ -67,7 +66,6 @@ func (serialCtrl *YoSerial) sendYoartMsg(msg *ymsg.YoartMsg) (int, error) {
     bs := make([]byte, 1)
     bs[0] = 0x1
     bs = append(bs, msg.ToBytes()...)
-    log.Println("sendYoartMsg: bs =", bs)
     return serialCtrl.Port.Write(bs)
 }
 func (serialCtrl *YoSerial) SendReqMessage(id uint32, data []uint8) (int, error) {
